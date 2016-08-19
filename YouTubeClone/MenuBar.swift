@@ -12,6 +12,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
     
     let cellId = "cellid"
     
+    let cellItems = ["home","trending","subscriptions","account"]
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionview = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
@@ -40,8 +42,8 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath)
-       // cell.backgroundColor = UIColor.blueColor()
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! MenuCell
+        cell.imageview.image = UIImage(named: cellItems[indexPath.row])
         return cell
     }
     

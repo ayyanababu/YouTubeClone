@@ -10,7 +10,7 @@ import UIKit
 
 class MenuCell: BaseCell{
     
-    let imageview: UIImageView = {
+    var imageview: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "home")
         return imageview
