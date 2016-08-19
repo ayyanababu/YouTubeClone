@@ -12,9 +12,23 @@ class MenuCell: BaseCell{
     
     var imageview: UIImageView = {
         let imageview = UIImageView()
-        imageview.image = UIImage(named: "home")
+        imageview.image = UIImage(named: "home")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        imageview.tintColor = UIColor.rgbColor(91, green: 14, blue: 13)
         return imageview
     }()
+    
+    override var highlighted: Bool{
+        didSet{
+            imageview.tintColor = highlighted ? UIColor.whiteColor() : UIColor.rgbColor(91, green: 14, blue: 13)
+        }
+    }
+    
+    
+    override var selected: Bool{
+        didSet{
+            imageview.tintColor = selected ? UIColor.whiteColor() : UIColor.rgbColor(91, green: 14, blue: 13)
+        }
+    }
     
     override func setUpViews() {
         super.setUpViews()

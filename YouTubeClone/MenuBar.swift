@@ -31,6 +31,9 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
         self.addSubview(collectionView)
         addConstraintsWithFormats("H:|[v0]|", views: collectionView)
         addConstraintsWithFormats("V:|[v0]|", views: collectionView)
+        
+        let selectedIndexPath = NSIndexPath(forItem: 0, inSection: 0)
+        collectionView.selectItemAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -43,7 +46,9 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(cellId, forIndexPath: indexPath) as! MenuCell
-        cell.imageview.image = UIImage(named: cellItems[indexPath.row])
+        cell.imageview.image = UIImage(named: cellItems[indexPath.row])?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        cell.imageview.tintColor = UIColor.rgbColor(91, green: 14, blue: 13)
+
         return cell
     }
     
