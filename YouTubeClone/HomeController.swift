@@ -9,6 +9,12 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    
+    let menubar: MenuBar = {
+        let menu = MenuBar()
+        return menu
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +25,20 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         titleLabel.text = "Home"
         titleLabel.textColor = UIColor.whiteColor()
         titleLabel.font = UIFont.systemFontOfSize(20)
+        titleLabel.textAlignment = .Center
         navigationItem.titleView = titleLabel
         
         collectionView?.registerClass(VideoCell.self, forCellWithReuseIdentifier: "cellid")
         self.collectionView?.backgroundColor = UIColor.whiteColor()
+        
+        
+        self.setupMenuBar()
+    }
+    
+    private func setupMenuBar(){
+        self.view.addSubview(menubar)
+        self.view.addConstraintsWithFormats("H:|[v0]|", views: menubar)
+        self.view.addConstraintsWithFormats("V:|[v0(50)]", views: menubar)
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
