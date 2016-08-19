@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoCell: UICollectionViewCell{
+class VideoCell: BaseCell{
     
     let thumnailImageView: UIImageView = {
         let imageview = UIImageView()
@@ -51,16 +51,13 @@ class VideoCell: UICollectionViewCell{
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        self.setUpViews()
-        //self.backgroundColor = UIColor.grayColor()
+    
+    
+    
+    
+    override func setUpViews(){
+        super.setUpViews()
         
-    }
-    
-    
-    
-    func setUpViews(){
         self.addSubview(thumnailImageView)
         self.addSubview(seperatorView)
         self.addSubview(userProfileImageView)
@@ -103,9 +100,6 @@ class VideoCell: UICollectionViewCell{
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
 }
 
