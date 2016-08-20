@@ -35,12 +35,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         
         self.setupMenuBar()
+        self.setUpNavBarIcons()
     }
     
     private func setupMenuBar(){
         self.view.addSubview(menubar)
         self.view.addConstraintsWithFormats("H:|[v0]|", views: menubar)
         self.view.addConstraintsWithFormats("V:|[v0(50)]", views: menubar)
+    }
+    
+    private func setUpNavBarIcons(){
+        let searchImage = UIImage(named: "search_icon")?.imageWithRenderingMode(.AlwaysOriginal)
+        let searchBarButton = UIBarButtonItem(image: searchImage, style: .Plain, target: self, action: #selector(handleSearch))
+        
+        let moreImage = UIImage(named: "nav_more_icon")?.imageWithRenderingMode(.AlwaysOriginal)
+        let moreButton = UIBarButtonItem(image: moreImage, style: .Plain, target: self, action: #selector(handleMore))
+        
+        navigationItem.rightBarButtonItems = [moreButton,searchBarButton]
+    }
+    
+    func handleSearch(){
+        print("clicked on search")
+    }
+    
+    
+    func handleMore(){
+        print("clicked on More Button")
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -11,10 +11,10 @@ import UIKit
 class MenuCell: BaseCell{
     
     var imageview: UIImageView = {
-        let imageview = UIImageView()
-        imageview.image = UIImage(named: "home")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        imageview.tintColor = UIColor.rgbColor(91, green: 14, blue: 13)
-        return imageview
+        let iv = UIImageView()
+        iv.image = UIImage(named: "home")?.imageWithRenderingMode(.AlwaysTemplate)
+        iv.tintColor = UIColor.rgbColor(91, green: 14, blue: 13)
+        return iv
     }()
     
     override var highlighted: Bool{
