@@ -10,6 +10,27 @@ import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    var videos: [Video] = {
+        
+        var kaneyChannel = Channel()
+        kaneyChannel.chanelname = "KaneyIsTheBestChannel"
+        kaneyChannel.profileImage = "kanye_profile"
+        
+        var blankspacevideo = Video()
+        blankspacevideo.thumbnailImage = "taylor_swift_blank_space"
+        blankspacevideo.title = "Taylor Swift Blank Song"
+        blankspacevideo.channel = kaneyChannel
+        blankspacevideo.numberofViews = 24356
+        
+        var badbloodvideo = Video()
+        badbloodvideo.thumbnailImage = "taylor_swift_bad_blood"
+        badbloodvideo.title = "Taylor Swift -Bad Blood Featuring kandrik"
+        badbloodvideo.channel = kaneyChannel
+        badbloodvideo.numberofViews = 5432189
+        
+        
+        return [blankspacevideo,badbloodvideo]
+    }()
     
     let menubar: MenuBar = {
         let menu = MenuBar()
@@ -64,18 +85,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return videos.count
     }
     
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellid", forIndexPath: indexPath)
-        return cell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cellid", forIndexPath: indexPath) as? VideoCell
+        cell?.video = videos[indexPath.item]
+        return cell!
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        let height = (self.view.frame.size.width - 15 - 15 ) * (9 / 16)
-        return CGSizeMake(self.view.frame.width, height + 15 + 67)
+        let height = (self.view.frame.size.width - 16 - 16 ) * (9 / 16)
+        return CGSizeMake(self.view.frame.width, height + 16 + 88)
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
