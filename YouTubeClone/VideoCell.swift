@@ -10,28 +10,25 @@ import UIKit
 
 class VideoCell: BaseCell{
     
-    var video: Video?{
-        didSet{
-            self.titleLabel.text = video!.title
-            self.thumnailImageView.image = UIImage(named: video!.thumbnailImage!)
+    var video: Video? {
+        didSet {
+            titleLabel.text = video?.title
             
-            if let profileImage = video?.channel?.profileImage{
-                self.userProfileImageView.image = UIImage(named:profileImage)
+           // thumnailImageView.image = UIImage(named: (video?.thumbnailImage)!)
+            setUpImages()
+            
+            setUpProfileImage()
+            
+            if let channelName = video?.channel?.chanelname, numberOfViews = video?.numberofViews {
+                
+                let numberFormatter = NSNumberFormatter()
+                numberFormatter.numberStyle = .DecimalStyle
+                
+                let subtitleText = "\(channelName) • \(numberFormatter.stringFromNumber(numberOfViews)!) • 2 years ago "
+                subtitleTextView.text = subtitleText
             }
             
-            if let subtitle = video?.channel?.chanelname{
-                
-                if let numbeofview = video?.numberofViews{
-                    let numberformatter = NSNumberFormatter()
-                    numberformatter.numberStyle = .DecimalStyle
-                    
-                    let subtitletext = "\(subtitle) - \(numberformatter.stringFromNumber(numbeofview)!) . 2Years Ago"
-                    self.subtitleTextView.text = subtitletext
-                }
-                
-            }
-            
-            //measure the titlelabel Height
+            //measure title text
             if let title = video?.title {
                 let size = CGSizeMake(frame.width - 16 - 44 - 8 - 16, 1000)
                 let options = NSStringDrawingOptions.UsesFontLeading.union(.UsesLineFragmentOrigin)
@@ -48,6 +45,8 @@ class VideoCell: BaseCell{
         }
     }
     
+    
+    
     let thumnailImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.backgroundColor = UIColor.blueColor()
@@ -60,6 +59,7 @@ class VideoCell: BaseCell{
     let userProfileImageView: UIImageView = {
         let imageview = UIImageView()
         imageview.image = UIImage(named: "taylor_swift_profile")
+        imageview.contentMode = .ScaleAspectFill
         
         //rounded image
         imageview.layer.cornerRadius = 22
@@ -70,18 +70,18 @@ class VideoCell: BaseCell{
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Taylor Swift- Blank Space"
+        label.text = "Taylor Swift - Blank Space"
         label.numberOfLines = 2
         return label
     }()
     
     let subtitleTextView: UITextView = {
-        let textview = UITextView()
-        textview.translatesAutoresizingMaskIntoConstraints = false
-        textview.text = "Taylor Swift Blank Song in the US Region is Super Hit - 1,54,345,67 2years"
-        textview.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
-        textview.textColor = UIColor.lightGrayColor()
-        return textview
+        let textView = UITextView()
+        textView.translatesAutoresizingMaskIntoConstraints = false
+        textView.text = "TaylorSwiftVEVO • 1,604,684,607 views • 2 years ago"
+        textView.textContainerInset = UIEdgeInsetsMake(0, -4, 0, 0)
+        textView.textColor = UIColor.lightGrayColor()
+        return textView
     }()
     
     let seperatorView: UIView = {
@@ -93,6 +93,22 @@ class VideoCell: BaseCell{
     
     var titleLableHeightConstraint: NSLayoutConstraint?
     
+    func setUpProfileImage(){
+    
+        if let profileurl = video?.channel?.profileImage{
+            
+            self.userProfileImageView.loadImageFromURL(profileurl)
+        }
+
+    }
+    
+    func setUpImages(){
+    
+        if let thumnailURL = video?.thumbnailImage{
+                self.thumnailImageView.loadImageFromURL(thumnailURL)
+        }
+        
+    }
     
     override func setUpViews(){
         super.setUpViews()
