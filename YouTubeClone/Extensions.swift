@@ -40,7 +40,6 @@ class CustomImageView: UIImageView{
     func loadImageFromURL(urlString: String){
         
         imageUrlString = urlString
-        self.image = nil
         
         if let imagefromcache = imageCache.objectForKey(urlString){
             self.image = imagefromcache as? UIImage

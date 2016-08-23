@@ -18,6 +18,7 @@
 		354373F11D65F4F3005D28B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 354373F01D65F4F3005D28B3 /* Assets.xcassets */; };
 		354373F41D65F4F4005D28B3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 354373F21D65F4F4005D28B3 /* LaunchScreen.storyboard */; };
 		3592E8211D6847B500558DD6 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3592E8201D6847B500558DD6 /* Video.swift */; };
+		35E69DD71D6CB73600CCD789 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E69DD61D6CB73600CCD789 /* Service.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		354373F31D65F4F4005D28B3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		354373F51D65F4F4005D28B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3592E8201D6847B500558DD6 /* Video.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		35E69DD61D6CB73600CCD789 /* Service.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +95,7 @@
 		354373E81D65F4F3005D28B3 /* YouTubeClone */ = {
 			isa = PBXGroup;
 			children = (
+				35E69DD51D6CB72C00CCD789 /* Service */,
 				3592E81F1D6847A900558DD6 /* modal */,
 				350561621D674B4A00152631 /* controller */,
 				3505615F1D674AEA00152631 /* view */,
@@ -112,6 +115,14 @@
 				3592E8201D6847B500558DD6 /* Video.swift */,
 			);
 			name = modal;
+			sourceTree = "<group>";
+		};
+		35E69DD51D6CB72C00CCD789 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				35E69DD61D6CB73600CCD789 /* Service.swift */,
+			);
+			name = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +201,7 @@
 				350561611D674B0400152631 /* VideoCell.swift in Sources */,
 				3505615E1D674A7C00152631 /* Extensions.swift in Sources */,
 				354373EA1D65F4F3005D28B3 /* AppDelegate.swift in Sources */,
+				35E69DD71D6CB73600CCD789 /* Service.swift in Sources */,
 				3592E8211D6847B500558DD6 /* Video.swift in Sources */,
 				350561661D676E9B00152631 /* BaseCell.swift in Sources */,
 				350561641D6755B700152631 /* MenuBar.swift in Sources */,

@@ -14,6 +14,9 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
     
     let cellItems = ["home","trending","subscriptions","account"]
     
+    var horizantalBarLeftConstraint: NSLayoutConstraint?
+   
+    
     lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let collectionview = UICollectionView(frame: CGRectZero, collectionViewLayout: layout)
@@ -34,6 +37,24 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
         
         let selectedIndexPath = NSIndexPath(forItem: 0, inSection: 0)
         self.collectionView.selectItemAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .None)
+        
+        //setting up white color bar on menu
+        setUpHorizantalBar()
+    }
+    
+    func setUpHorizantalBar(){
+        let horizantalBar = UIView()
+        horizantalBar.backgroundColor = UIColor(white: 0.95, alpha: 1.0)
+        horizantalBar.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(horizantalBar)
+        
+        horizantalBarLeftConstraint = horizantalBar.leftAnchor.constraintEqualToAnchor(self.leftAnchor)
+        horizantalBarLeftConstraint?.active = true
+        
+        horizantalBar.bottomAnchor.constraintEqualToAnchor(self.bottomAnchor).active = true
+        horizantalBar.widthAnchor.constraintEqualToAnchor(self.widthAnchor, multiplier: 1/4).active = true
+        horizantalBar.heightAnchor.constraintEqualToConstant(8).active = true
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,6 +71,17 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDelegateFlowLay
         cell.tintColor = UIColor.rgbColor(91, green: 14, blue: 13)
 
         return cell
+    }
+    
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let x = (CGFloat(indexPath.item) * frame.width) / 4
+        horizantalBarLeftConstraint?.constant = x
+        
+        
+        UIView.animateWithDuration(0.75, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .CurveEaseOut, animations: { 
+            self.layoutIfNeeded()
+            }, completion: nil)
+        
     }
     
     
