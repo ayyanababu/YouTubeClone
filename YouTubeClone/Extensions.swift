@@ -16,6 +16,8 @@ extension UIColor{
 
 
 extension UIView{
+    
+    
     func addConstraintsWithFormats(format: String, views: UIView...){
         
         var viewsDict = [String: UIView]()
@@ -29,8 +31,21 @@ extension UIView{
     }
 }
 
-extension UIImageView{
+
+let imageCache = NSCache()
+
+class CustomImageView: UIImageView{
+    
+    var imageUrlString: String?
     func loadImageFromURL(urlString: String){
+        
+        imageUrlString = urlString
+        self.image = nil
+        
+        if let imagefromcache = imageCache.objectForKey(urlString){
+            self.image = imagefromcache as? UIImage
+            return
+        }
     
         let url = NSURL(string: urlString)
         NSURLSession.sharedSession().dataTaskWithURL(url!, completionHandler: { (data, response, error) in
@@ -40,7 +55,16 @@ extension UIImageView{
             }
             
             dispatch_async(dispatch_get_main_queue(), {
-                self.image = UIImage(data: data!)
+                
+                let imageToCache = UIImage(data: data!)
+                
+                if self.imageUrlString == urlString{
+                    self.image = UIImage(data: data!)
+
+                }
+                
+                imageCache.setObject(imageToCache!, forKey: urlString)
+                
             })
             
         }).resume()

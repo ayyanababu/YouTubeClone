@@ -47,17 +47,17 @@ class VideoCell: BaseCell{
     
     
     
-    let thumnailImageView: UIImageView = {
-        let imageview = UIImageView()
-        imageview.backgroundColor = UIColor.blueColor()
+    let thumnailImageView: CustomImageView = {
+        let imageview = CustomImageView()
+        //imageview.backgroundColor = UIColor.blueColor()
         imageview.image = UIImage(named:"taylor_swift_blank_space")
         imageview.contentMode = .ScaleAspectFill
         imageview.clipsToBounds = true
         return imageview
     }()
     
-    let userProfileImageView: UIImageView = {
-        let imageview = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageview = CustomImageView()
         imageview.image = UIImage(named: "taylor_swift_profile")
         imageview.contentMode = .ScaleAspectFill
         
